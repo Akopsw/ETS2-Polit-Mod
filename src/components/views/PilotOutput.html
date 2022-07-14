@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../../../public/favicon.ico"/>
+    <title>驾驶员名字生成</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/index.css"/>
+</head>
+<body>
+<div class="div-body">
+    <form class="form-body">
+        <div>
+            <label for="nameInput">输入：</label>
+            <input id="nameInput" placeholder="打工人"/>
+            <span>驾驶员名字，一个就行</span>
+        </div>
+        <div>
+            <label for="nameNumber">遍历次数：</label>
+            <input id="nameNumber" type="number"/>
+        </div>
+        <div>
+            <label for="startBtn">操作：</label>
+            <button class="success" type="button" id="startBtn" onclick="startFun()">开始</button>
+        </div>
+        <div>
+            <label for="nameList">输出：</label>
+            <pre id='nameList'></pre>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    function startFun() {
+        const nameIpt = document.getElementById('nameInput').value;
+        let nameInt = document.getElementById('nameNumber').value;
+        // console.log(nameIpt + nameInt)
+        let nameList = ''
+        // 循环130次
+        for (let i = 0; i < Number(nameInt); i++) {
+            // 名字就叫打工人+编号，\n是换行的意思，不想换行删掉\n就行
+            nameList += (nameIpt + i + ',\n')
+        }
+        // 去掉最后一个逗号，这个如果是html显示的话不晓得为啥会没用，控制台打印的时候倒是有用
+        nameList = nameList.substr(0, nameList.length - 1)
+        // 去掉输出的打工人名字带双引号，我改成用html显示了就注释掉，想直接用控制台打印的放开就行，记得把下面的document一行注释
+        // console.log(nameList.replace(/\"/g, ""))
+        // 使用html显示，等于号后面的实际上就是上面那行去掉最后一个逗号的
+        document.getElementById('nameList').innerHTML = nameList.substr(0, nameList.length - 1)
+    }
+</script>
+</html>

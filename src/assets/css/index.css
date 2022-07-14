@@ -1,0 +1,169 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fdfbfb;
+}
+
+.div-body {
+    margin: 10px;
+}
+
+.div-body, .form-body {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.body-head {
+    top: 5rem;
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.body-head h2 {
+    text-align: center;
+}
+
+.body-bottom {
+    width: 100%;
+    bottom: 5px;
+}
+
+.body-bottom h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.form-body div {
+    display: -webkit-flex;
+    display: flex;
+    width: 100%;
+    margin: 20px 10px;
+}
+
+.form-body div label,
+.form-body div textarea,
+.form-body div select {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+}
+
+.form-body div label {
+    max-width: 210px;
+    width: 180px;
+    min-width: 180px;
+    font-weight: bold;
+    line-height: 2.6rem;
+}
+
+.form-body div input {
+    width: 12.56em;
+    font-size: larger;
+    line-height: 20px;
+    border-radius: 4px;
+    border: 1px solid #e1e1e1;
+}
+
+.form-body div input:focus {
+    outline: none;
+    border: 1px solid #e1e1e1;
+    box-shadow: 3px 3px 2px rgba(128, 128, 128, 0.26);
+}
+
+.form-body div select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    width: 12.56em;
+    height: 2.55em;
+    font-weight: bold;
+    font-size: larger;
+    padding: 0 26px 0 5px;
+    font-family: inherit;
+    color: #666666;
+    cursor: pointer;
+    position: relative;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAASFBMVEUAAAD////Nzc3Nzc3V1dXNzc3MzMzMzMzMzMzNzc3Ozs7j4+PMzMzMzMzMzMzPz8/MzMzNzc3Ozs7Ozs7MzMzNzc3Nzc3Nzc1mbvnCAAAAGHRSTlMAAymOBrtVs9RlPgnPltxPlWwvRJzBt+CSuXutAAAAM0lEQVR4nGMYBbgALycjiGIUZEaTEBLl4WJgEOZgZcLQwybOLsbHj800bhEBFqo7cfACACvdARau8cpxAAAAAElFTkSuQmCC') no-repeat right center;
+}
+
+.form-body div span {
+    color: gray;
+    line-height: 3rem;
+    padding-left: 20px;
+    font-style: oblique;
+}
+
+.form-body div select option {
+    font-size: inherit;
+    font-weight: bold;
+    margin: 5px 10px;
+}
+
+.form-body div textarea {
+    width: 75%;
+    min-height: 260px;
+    max-height: 580px;
+    _height: 120px;
+    padding: 3px;
+    outline: 0;
+    border-radius: 4px;
+    font-family: inherit;
+    border: 1px solid #e1e1e1;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    _overflow-y: visible;
+}
+
+.form-body div button {
+    height: 45px;
+    width: 100px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 3px 3px 2px rgba(128, 128, 128, 0.26);
+}
+
+.form-body div button.success {
+    color: #000000;
+    background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+}
+
+.form-body div button:hover {
+    font-size: 20px;
+}
+
+.form-body div button.success:hover {
+    box-shadow: 3px 3px #ff9a9e, -3px 0 1px #fad0c4;
+}
+
+.form-body div button.routine:hover {
+    box-shadow: 3px 3px #cfd9df, -3px 0 1px #e2ebf0;
+}
+
+.form-body div button.primary {
+    color: #000000;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+}
+
+.form-body div button.primary:hover {
+    box-shadow: 3px 3px #16d9e3, -3px 0 1px #30c7ec;
+    background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);
+}
+
+a {
+    color: #a0b3d6;
+    font-style: oblique;
+}

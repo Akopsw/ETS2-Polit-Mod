@@ -1,0 +1,15 @@
+SiiNunit
+{
+mod_package : .package_name {
+
+    package_version: "1.0"
+
+    display_name: "这里是驾驶员mod的名字"
+
+    author: "这是mod制作者的名字（写自己就行）"
+
+    category[]: "other"
+
+    icon: "cover.jpg"
+}
+}
