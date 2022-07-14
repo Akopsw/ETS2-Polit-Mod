@@ -63,7 +63,7 @@
         </form>
     </div>
     <div class="body-bottom">
-        <h3><a target="_blank" href="https://github.com/CNGZHUI/file-saver/wiki">说明文档</a></h3>
+        <h3><a target="_blank" href="https://github.com/Akopsw/ETS2-Polit-Mod/wiki">说明文档</a></h3>
     </div>
 </template>
 
