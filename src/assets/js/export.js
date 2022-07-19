@@ -44,26 +44,30 @@ export const codeListFoEach = {
             const createArr = (str, start, end, unit) => {
                 let arrString = '' //保存每次截取后的字符串
                 let countCycle = Math.ceil(str.length / unit) //循环截取的次数,向上取整
+                let codeNumber = ''
                 // 长度为10~99的直接拼接，小于10或者大于99的就要循环截取
                 if (str.length > 4 || str.length < 4 && str.length !== 4) {
                     for (let i = 0; i < countCycle; i++) {
                         let newStr = str.substring(start, end)
                         if (newStr.length >= 4) {
+                            codeNumber = '1c00'
                             arrString += newStr + ' '
                         } else {
+                            codeNumber = '1b00'
                             arrString += newStr + '2e 6464 73'
                         }
                         start = end
                         end += unit
                     }
                 } else {
+                    codeNumber = '1a00'
                     arrString += str + ' 2e64 6473'
                 }
                 return arrString
             }
             return '010a b170 0000 0000 0000 0000 0000 0000\n' +
                 '0000 0000 0100 0000 0200 0303 0200 0202\n' +
-                '0001 0000 0001 0100 1900 0000 0000 0000\n' +
+                '0001 0000 0001 0100 ' + codeNumber + ' 0000 0000 0000\n' +
                 '2f6d 6174 6572 6961 6c2f 7569 2f64 7269\n' +
                 '7665 722f ' + createArr(params, 0, 4, 4)
         },
