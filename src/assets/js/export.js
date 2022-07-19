@@ -25,7 +25,7 @@ export const codeListFoEach = {
             } else if (typeMode === 1) {
                 for (let i = 0; i < params; i++) {
                     // mat文件生成，需打包后下载，文件按驾驶员多少生成
-                    matFileList.push(this.matFileExportFun(String(i + 1)))
+                    matFileList.push(this.matFileExportFun(String(i)))
                 }
                 fileSave.zipFileExport(matFileList, 'mat')
             } else if (typeMode === 0) {
