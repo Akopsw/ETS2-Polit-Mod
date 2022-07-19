@@ -136,7 +136,9 @@
                     if (this.nameList) {
                         // 根据逗号分割
                         if (this.fileType === 2) {
-                            const nameCodeList = this.nameList.split(",")
+                            // 干掉换行符
+                            const wraTxt = this.nameList.replace(/(\n|\r|(\r\n)|(\u0085)|(\u2028)|(\u2029))/g, "")
+                            const nameCodeList = wraTxt.split(",")
                             this.cycleCharacter(nameCodeList, this.fileType, this.lgType)
                         } else {
                             this.cycleCharacter(Number(this.nameSize), this.fileType, this.lgType)
