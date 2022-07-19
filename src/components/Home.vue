@@ -33,7 +33,7 @@
             </div>
             <div v-if="!siiState">
                 <label for="nameSize">清单总数：</label>
-                <input v-model.trim="nameSize" type="number" id="nameSize" placeholder="请输入数量" @input="sizeChange"/>
+                <input v-model.trim="nameSize" max="1200" type="number" id="nameSize" placeholder="请输入数量" @input="sizeChange"/>
                 <span>用于指定tobj和mat文件生成多少个（一定要和sii的驾驶员数量一致）</span>
             </div>
             <div v-if="siiState">
