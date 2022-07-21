@@ -25,7 +25,7 @@ export const codeListFoEach = {
             } else if (typeMode === 1) {
                 for (let i = 0; i < params; i++) {
                     // mat文件生成，需打包后下载，文件按驾驶员多少生成
-                    matFileList.push(this.matFileExportFun(String(i)))
+                    matFileList.push(this.matFileExportFun(String(i + 1)))
                 }
                 fileSave.zipFileExport(matFileList, 'mat')
             } else if (typeMode === 0) {
@@ -36,7 +36,7 @@ export const codeListFoEach = {
                 fileSave.zipFileExport(tobjFileList, 'tobj')
             }
         },
-        tobjFileExportFun(params, legSize) {
+        tobjFileExportFun(params) {
             // 将最后几位数转16进制，写入tobj文件，单独导出，
             // 文件名的.的16进制为2e,
             // 大于4位数的截取为4位和2位，2位的拼接2e在结尾
@@ -61,11 +61,18 @@ export const codeListFoEach = {
                 }
                 return arrString
             }
-            return '010a b170 0000 0000 0000 0000 0000 0000\n' +
+            const baseCode = '010a b170 0000 0000 0000 0000 0000 0000\n' +
                 '0000 0000 0100 0000 0200 0303 0200 0202\n' +
-                '0001 0000 0001 0100 ' + legSize + ' 0000 0000 0000\n' +
+                '0001 0000 0001 0100 1900 0000 0000 0000\n' +
                 '2f6d 6174 6572 6961 6c2f 7569 2f64 7269\n' +
-                '7665 722f ' + createArr(params, 0, 4, 4) + ''
+                '7665 722f ' + createArr(params, 0, 4, 4)
+            const codeBaseStr = window.atob(baseCode)
+            const codeLen = codeBaseStr.length
+            const codeBytes = new Uint8Array(codeLen)
+            for (let i=0;i<codeLen;i++) {
+                codeBytes[i] = codeBaseStr.charCodeAt(i)
+            }
+            return baseCode
         },
         matFileExportFun(i) {
             // 把每一个驾驶员单独导出成.mat文件
@@ -84,12 +91,11 @@ export const codeListFoEach = {
                 const indexValue = i.toString().length >= 2 ? i : String('0' + i)
                 codeNameList.push('\nname[' + indexValue + ']: "' + params[i] + '"')
             }
-            // 使用join去掉数组的逗号
             const paList = 'SiiNunit\n' +
                 '{\n' +
                 'driver_names : .driver.names\n' +
                 '{\n' +
-                '   ' + codeNameList.join("") +
+                codeNameList +
                 '\n\n}\n' +
                 '}\n'
             // 调用下载
@@ -98,22 +104,11 @@ export const codeListFoEach = {
         sixteenBaseChangeFun(params) {
             // 转16进制
             let baseCode = '';
-            let legSize = '';
-            let paramsSize = Number(params) + 1
             for (let i = 0; i < params.length; i++) {
                 baseCode += params.charCodeAt(i).toString(16)
             }
-            if (Number(paramsSize) <= 9) {
-                legSize = '1900'
-            } else if (Number(paramsSize) > 9 && Number(paramsSize) < 1000) {
-                legSize = '1a00'
-            } else if (Number(paramsSize) <= 999 && Number(paramsSize) < 1000) {
-                legSize = '1a00'
-            } else {
-                legSize = '1b00'
-            }
             // tobj文件内容
-            return this.tobjFileExportFun(baseCode, legSize)
+            return this.tobjFileExportFun(baseCode)
         }
     }
 }
