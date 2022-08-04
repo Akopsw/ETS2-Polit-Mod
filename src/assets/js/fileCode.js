@@ -1,0 +1,23 @@
+const fs = require('fs')
+const path = require('path')
+const jschardet = require('jschardet')
+const iconv = require('iconv-lite')
+
+const filesPath = path.resolve(__dirname, '../../assets/file')
+
+const buf = fs.readFileSync(path.join(filesPath, '1.tobj'), { encoding: 'binary' })
+const text = fs.readFileSync(path.join(filesPath, '0.tobj'), { encoding: 'latin1' })
+const thx = fs.readFileSync(path.join(filesPath, '16.tobj'), {encoding: 'latin1'})
+const result = jschardet.detect(buf)
+const results = jschardet.detect(thx)
+const data = iconv.decode(buf, result.encoding) //使用iconv转成中文格式
+const thxs = iconv.decode(thx, results.encoding)
+console.log('识别的编码：', result.encoding)
+console.log('============')
+console.log('原文:', text)
+console.log('============')
+console.log('转义后:', data)
+console.log('============')
+console.log('正确的编码:', results)
+console.log('============')
+console.log('文件内容:', thxs)
