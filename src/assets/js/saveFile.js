@@ -1,6 +1,6 @@
 import FileSaver from 'file-saver'
 import JSZip from 'jszip'
-import { utf8ToAnsi } from 'utf8-to-ansi'
+// import { utf8ToAnsi } from 'utf8-to-ansi'
 
 const fileSave = {
     txtFileExport(res, name) {
@@ -16,8 +16,8 @@ const fileSave = {
         // 打包下载tobj或mat文件
         const fileZip = new JSZip()
         files.forEach((v, i) => {
-            const vcCode = type === 'tobj' ? utf8ToAnsi(v) : v
-            const fileBlob = new Blob([vcCode], {type: type === 'tobj' ? 'text/plain;charset=cp1252' : 'text/plain;charset=UTF-8'})
+            // const vcCode = type === 'tobj' ? utf8ToAnsi(v) : v
+            const fileBlob = new Blob([v], {type: type === 'tobj' ? 'text/plain;charset=latin1' : 'text/plain;charset=UTF-8'})
             const fileName = i + '.' + type
             fileZip.file(fileName, fileBlob)
         })
