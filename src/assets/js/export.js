@@ -36,7 +36,7 @@ export const codeListFoEach = {
                 fileSave.zipFileExport(tobjFileList, 'tobj')
             }
         },
-        tobjFileExportFun(params) {
+        tobjFileExportFun(params, legSize) {
             // 将最后几位数转16进制，写入tobj文件，单独导出，
             // 文件名的.的16进制为2e,
             // 大于4位数的截取为4位和2位，2位的拼接2e在结尾
@@ -63,7 +63,7 @@ export const codeListFoEach = {
             }
             const baseCode = '010a b170 0000 0000 0000 0000 0000 0000\n' +
                 '0000 0000 0100 0000 0200 0303 0200 0202\n' +
-                '0001 0000 0001 0100 1900 0000 0000 0000\n' +
+                '0001 0000 0001 0100 ' + legSize + ' 0000 0000 0000\n' +
                 '2f6d 6174 6572 6961 6c2f 7569 2f64 7269\n' +
                 '7665 722f ' + createArr(params, 0, 4, 4)
             const codeBaseStr = window.atob(baseCode)
@@ -76,12 +76,11 @@ export const codeListFoEach = {
         },
         matFileExportFun(i) {
             // 把每一个驾驶员单独导出成.mat文件
-            const paCode = 'material : "ui" \n' +
+            return 'material : "ui" \n' +
                 '{ \n' +
                 '\ttexture : "' + i + '.tobj" \n' +
                 '\ttexture_name : "texture" \n' +
                 '} '
-            return paCode
         },
         siiFileExportFun(params, lgName) {
             // 把完整的驾驶员名字导出成.sii文件
@@ -104,11 +103,22 @@ export const codeListFoEach = {
         sixteenBaseChangeFun(params) {
             // 转16进制
             let baseCode = '';
+            let legSize = '1900';
+            let paramsSize = Number(params) + 1
             for (let i = 0; i < params.length; i++) {
                 baseCode += params.charCodeAt(i).toString(16)
             }
+            if (Number(paramsSize) <= 10) {
+                legSize = '1900'
+            } else if (Number(paramsSize) >= 10 && Number(paramsSize) <= 100) {
+                legSize = '1a00'
+            } else if (Number(paramsSize) >= 100 && Number(paramsSize) <= 1000) {
+                legSize = '1b00'
+            } else if (Number(paramsSize) >= 1000) {
+                legSize = '1c00'
+            }
             // tobj文件内容
-            return this.tobjFileExportFun(baseCode)
+            return this.tobjFileExportFun(baseCode, legSize)
         }
     }
 }
